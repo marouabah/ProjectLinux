@@ -3,18 +3,27 @@ game=1
 nb=0 
 qst=0
 answer=''
-
+array=("Quel est le but de la vie ?" "d")
 function question() {
-	read -p "Votre réponse" answer
+	for i in ${!array[@]}; do
+		for x in ${arrayquestion[@]}
+		echo "${array[$x]}"
 }
 
 function checkanswer() {
+	echo "Votre réponse:"
+	read -p  temp
+	let "answer=temp"
+	
 		
-	if [ $answer!='a' ] || [ $answer!='b' ] || [ $answer!='c' ] || [ $answer!='d' ];
+	if [ $answer=='a' ] || [ $answer=='b' ] || [ $answer=='c' ] || [ $answer=='d' ];
         then
-                let "answer='' "
+		echo "la réponse est correct"
+	else
+                let "answer= "
                 echo "Réponse invalide"
 		echo "Réessayé"
+		let "qst=qst-1"
 
         fi
 
@@ -51,8 +60,8 @@ do
 
 		1)
 			
+			question
 			qstnext
-			checkanswer
 			;;
 
 		2)
